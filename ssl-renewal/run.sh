@@ -6,9 +6,9 @@ if [[ -z "$MULTI_DOMAIN" || -z "$DOMAIN" || -z "$RESOURCE_GROUP" || -z "$GATEWAY
 fi
 
 if [[ ${MULTI_DOMAIN} == 'yes' ]]; then
-  certbot certonly --manual --manual-auth-hook ${PWD}/auth.sh -d ${DOMAIN} -d www.${DOMAIN} --agree-tos --manual-public-ip-logging-ok --email '${EMAIL}'
+  certbot certonly --manual --manual-auth-hook ${PWD}/auth.sh -d ${DOMAIN} -d www.${DOMAIN} --agree-tos --manual-public-ip-logging-ok --email ${EMAIL}
 else
-  certbot certonly --manual --manual-auth-hook ${PWD}/auth.sh -d ${DOMAIN} --agree-tos --manual-public-ip-logging-ok --email '${EMAIL}'
+  certbot certonly --manual --manual-auth-hook ${PWD}/auth.sh -d ${DOMAIN} --agree-tos --manual-public-ip-logging-ok --email ${EMAIL}
 fi
 
 PASSWORD=$(pwgen 29)
