@@ -18,4 +18,4 @@ The following environment variables need to be set:
 * `PASSWORD` (service principal)
 * `TENANT`
 
-Credit mostly to [Isaac](@isaaccarrington) for this one.
+Credit mostly to [Isaac](https://github.com/isaaccarrington) for this one.
