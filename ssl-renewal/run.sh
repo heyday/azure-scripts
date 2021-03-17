@@ -1,5 +1,10 @@
 #!/bin/bash
 
+if [[ -z "$MULTI_DOMAIN" || -z "$DOMAIN" || -z "$RESOURCE_GROUP" || -z "$GATEWAY_NAME" || -z "$GATEWAY_CERT_NAME" || -z "$EMAIL" || -z "$STORAGE_ACCOUNT_NAME" || -z "$USERNAME" || -z "$PASSWORD" || -z "$TENANT" ]]; then
+    echo "Missing environment variables" 1>&2
+    exit 1
+fi
+
 if [[ ${MULTI_DOMAIN} == 'yes' ]]; then
   certbot certonly --manual --manual-auth-hook ${PWD}/auth.sh -d ${DOMAIN} -d www.${DOMAIN} --agree-tos --manual-public-ip-logging-ok --email '${EMAIL}'
 else
