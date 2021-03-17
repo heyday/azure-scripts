@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if [ ${MULTI_DOMAIN} == 'yes' ]; then
+if [[ ${MULTI_DOMAIN} == 'yes' ]]; then
   certbot certonly --manual --manual-auth-hook ${PWD}/auth.sh -d ${DOMAIN} -d www.${DOMAIN} --agree-tos --manual-public-ip-logging-ok --email '${EMAIL}'
 else
   certbot certonly --manual --manual-auth-hook ${PWD}/auth.sh -d ${DOMAIN} --agree-tos --manual-public-ip-logging-ok --email '${EMAIL}'
