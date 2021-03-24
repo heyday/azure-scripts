@@ -12,7 +12,7 @@ else
 	expiration_day_left=$EXPIRATION_DAY_LEFT
 fi
 
-website="seaviewproject.co.nz"
+website="$DOMAIN"
 date=$(echo | openssl s_client -servername ${website} -connect ${website}:443 2>/dev/null | openssl x509 -noout -dates | grep "notAfter" | sed "s/.*=\(.*\)/\1/")
 date_s=$(date -d "${date}" +%s)
 now_s=$(date -d now +%s)
