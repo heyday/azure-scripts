@@ -1,8 +1,8 @@
 #!/bin/bash
-# if [[ -z "$MULTI_DOMAIN" || -z "$DOMAIN" || -z "$RESOURCE_GROUP" || -z "$GATEWAY_NAME" || -z "$GATEWAY_CERT_NAME" || -z "$EMAIL" || -z "$STORAGE_ACCOUNT_NAME" || -z "$USERNAME" || -z "$PASSWORD" || -z "$TENANT" ]]; then
-#     echo "Missing environment variables" 1>&2
-#     exit 1
-# fi
+if [[ -z "$MULTI_DOMAIN" || -z "$DOMAIN" || -z "$RESOURCE_GROUP" || -z "$GATEWAY_NAME" || -z "$GATEWAY_CERT_NAME" || -z "$EMAIL" || -z "$STORAGE_ACCOUNT_NAME" || -z "$USERNAME" || -z "$PASSWORD" || -z "$TENANT" ]]; then
+    echo "Missing environment variables" 1>&2
+    exit 1
+fi
 
 # EXPIRATION_DAY_LEFT is set to 30 if not defined,
 # if this number is larger than number of deys left before cert expire, this process will exit.
