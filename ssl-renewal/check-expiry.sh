@@ -1,7 +1,7 @@
 # EXPIRATION_DAY_LEFT is set to 30 if not defined,
 # if this number is larger than number of deys left before cert expire, this process will exit.
 if [[ -z "$EXPIRATION_DAY_LEFT" ]]; then
-    expiration_day_left=30
+	expiration_day_left=30
 else
 	expiration_day_left=$EXPIRATION_DAY_LEFT
 fi
