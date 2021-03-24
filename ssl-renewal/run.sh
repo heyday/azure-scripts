@@ -19,7 +19,7 @@ now_s=$(date -d now +%s)
 date_diff=$(( (date_s - now_s) / 86400 ))
 date_diff=$(($date_diff + 0))
 
-if [ date_diff -gt expiration_day_left ]; then
+if [ $date_diff -gt $expiration_day_left ]; then
 	echo "Expiration date is still longer than ${expiration_day_left} day(s)!" 1>&2
 	exit 1
 fi
