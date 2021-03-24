@@ -17,6 +17,7 @@ date=$(echo | openssl s_client -servername ${website} -connect ${website}:443 2>
 date_s=$(date -d "${date}" +%s)
 now_s=$(date -d now +%s)
 date_diff=$(( (date_s - now_s) / 86400 ))
+date_diff=$(($date_diff + 0))
 
 if [ date_diff -gt expiration_day_left ]; then
 	echo "Expiration date is still longer than ${expiration_day_left} day(s)!" 1>&2
