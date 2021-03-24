@@ -15,5 +15,5 @@ date_diff=$(($date_diff + 0))
 
 if [ $date_diff -gt $expiration_day_left ]; then
 	echo "Expiration date is still longer than ${expiration_day_left} day(s)!" 1>&2
-	exit 1
+	exit 0
 fi
