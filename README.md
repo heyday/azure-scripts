@@ -21,6 +21,6 @@ The following environment variables need to be set:
 
 The following environment variables are optional:
 
-- `EXPIRATION_DAY_LEFT` (integer, if this value is less than actual expiration day left of cert, cert renewal will be omitted)
+- `EXPIRATION_DAY_LEFT` (integer, if this value is less than actual expiration day left of cert, cert renewal will be omitted, default is 30)
 
 Credit mostly to [Isaac](https://github.com/isaaccarrington) for this one.
