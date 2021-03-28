@@ -5,6 +5,8 @@ if [[ -z "$MULTI_DOMAIN" || -z "$DOMAIN" || -z "$RESOURCE_GROUP" || -z "$GATEWAY
     exit 1
 fi
 
+source $(dirname $0)/check-expiry.sh
+
 if [[ ${MULTI_DOMAIN} == 'yes' ]]; then
   certbot certonly --manual --manual-auth-hook ${PWD}/auth.sh -d ${DOMAIN} -d www.${DOMAIN} --agree-tos --manual-public-ip-logging-ok --email ${EMAIL}
 else
