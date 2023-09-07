@@ -1,4 +1,4 @@
-FROM ubuntu:18.04
+FROM ubuntu:22.04
 
 RUN apt-get update && apt-get -y upgrade && \
     apt-get install -y curl && \
@@ -9,6 +9,10 @@ RUN curl -sL https://aka.ms/InstallAzureCLIDeb | bash
 
 COPY auth.sh .
 COPY run.sh .
+COPY check-expiry.sh .
+
 RUN chmod +x run.sh
+RUN chmod +x auth.sh
+RUN chmod +x check-expiry.sh
 
 CMD ["bash", "run.sh"]
