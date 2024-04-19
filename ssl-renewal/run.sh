@@ -5,7 +5,9 @@ if [[ -z "$MULTI_DOMAIN" || -z "$DOMAIN" || -z "$RESOURCE_GROUP" || -z "$GATEWAY
     exit 1
 fi
 
-source $(dirname $0)/check-expiry.sh
+if [[ -z "$FORCE_ISSUE" ]]; then
+    source $(dirname $0)/check-expiry.sh
+fi
 
 # if no ADDITIONAL_DOMAINS defined then ADDITIONAL_DOMAINS is empty
 ADDITIONAL_DOMAINS=${ADDITIONAL_DOMAINS:-""}
@@ -17,7 +19,6 @@ IFS=',' read -ra ADDR <<< "$ADDITIONAL_DOMAINS"
 for i in "${ADDR[@]}"; do
     ADDITIONAL_DOMAIN_LIST+=" -d $i"
 done
-
 
 if [[ ${MULTI_DOMAIN} == 'yes' ]]; then
     certbot certonly --manual --manual-auth-hook ${PWD}/auth.sh -d ${DOMAIN} -d www.${DOMAIN} ${ADDITIONAL_DOMAIN_LIST} --agree-tos --manual-public-ip-logging-ok --email ${EMAIL}
