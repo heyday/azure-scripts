@@ -7,21 +7,22 @@ fi
 
 source $(dirname $0)/check-expiry.sh
 
+# if no ADDITIONAL_DOMAINS defined then ADDITIONAL_DOMAINS is empty
+ADDITIONAL_DOMAINS=${ADDITIONAL_DOMAINS:-""}
+
+# ADDITIONAL_DOMAINS is a comma separated list of additional domains, explode into -d domain
+ADDITIONAL_DOMAIN_LIST=""
+
+IFS=',' read -ra ADDR <<< "$ADDITIONAL_DOMAINS"
+for i in "${ADDR[@]}"; do
+    ADDITIONAL_DOMAIN_LIST+=" -d $i"
+done
+
+
 if [[ ${MULTI_DOMAIN} == 'yes' ]]; then
-	# if no ADDITIONAL_DOMAINS defined then ADDITIONAL_DOMAINS is empty
-	ADDITIONAL_DOMAINS=${ADDITIONAL_DOMAINS:-""}
-
-	# ADDITIONAL_DOMAINS is a comma separated list of additional domains, explode into -d domain
-	ADDITIONAL_DOMAIN_LIST=""
-
-	IFS=',' read -ra ADDR <<< "$ADDITIONAL_DOMAINS"
-	for i in "${ADDR[@]}"; do
-		ADDITIONAL_DOMAIN_LIST+=" -d $i"
-	done
-
-	certbot certonly --manual --manual-auth-hook ${PWD}/auth.sh -d ${DOMAIN} -d www.${DOMAIN} ${ADDITIONAL_DOMAIN_LIST} --agree-tos --manual-public-ip-logging-ok --email ${EMAIL}
+    certbot certonly --manual --manual-auth-hook ${PWD}/auth.sh -d ${DOMAIN} -d www.${DOMAIN} ${ADDITIONAL_DOMAIN_LIST} --agree-tos --manual-public-ip-logging-ok --email ${EMAIL}
 else
-  certbot certonly --manual --manual-auth-hook ${PWD}/auth.sh -d ${DOMAIN} ${ADDITIONAL_DOMAINS} --agree-tos --manual-public-ip-logging-ok --email ${EMAIL}
+    certbot certonly --manual --manual-auth-hook ${PWD}/auth.sh -d ${DOMAIN} ${ADDITIONAL_DOMAIN_LIST} --agree-tos --manual-public-ip-logging-ok --email ${EMAIL}
 fi
 
 PASSWORD=$(pwgen 29)
